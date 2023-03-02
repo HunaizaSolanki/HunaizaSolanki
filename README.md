@@ -1,5 +1,4 @@
 - Hi, I’m @HunaizaSolanki
-- I’m interested in Front-end-development and also in learning new technologies.
 - Working as a junior mobile application developer.
 - You can reach me through my email: hunaizariaz10@gmail.com.
 
