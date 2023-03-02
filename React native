@@ -1,3 +1,9 @@
+*****Fetch Data from firebase*****
+Installation: 1) npm i @react-native-firebase/database 2) npm install --save @react-native-firebase/app
+
+Code:
+import database from '@react-native-firebase/database';
+
 database().ref('Users/').on('value', snapshot => {
         let responselist = Object.values(snapshot.val())
         setData(responselist)
