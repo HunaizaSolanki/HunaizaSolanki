@@ -1,0 +1,7 @@
+database().ref('Users/').on('value', snapshot => {
+        let responselist = Object.values(snapshot.val())
+        setData(responselist)
+        console.log(responselist, "Snapshot")
+});
+      
+e.g firebase db: Users ---> First_User ---> id: 1, name: Hunaiza / Second_User ---> id: 2, name: Madiha...
