@@ -25,6 +25,15 @@ useEffect(() => {
     setMessages(chatData)
 }, [])
 
+//Show already available data in db
+useEffect(() => {
+    database().ref('Messages/').on('value', snapshot => {
+      let responselist = Object.values(snapshot.val())
+      setMessages(responselist)
+      console.log(responselist, "Snapshot")
+    });
+  }, [])
+
 //Send msgs in firebase realtime db
 const onSend = () => {
     const msgss = {
