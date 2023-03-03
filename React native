@@ -1,4 +1,4 @@
-*****Fetch Data from firebase*****
+*****Fetch Data from Firebase Realtime Db*****
 Installation: 1) npm i @react-native-firebase/database 2) npm install --save @react-native-firebase/app
 
 Code:
@@ -11,3 +11,61 @@ database().ref('Users/').on('value', snapshot => {
 });
       
 e.g firebase db: Users ---> First_User ---> id: 1, name: Hunaiza / Second_User ---> id: 2, name: Madiha...
+
+*****Push Data to Firebase Realtime Db*****
+
+Code:
+import database from '@react-native-firebase/database';
+
+const [msgData, setMsgData] = useState('');
+const [messages, setMessages] = useState([]);
+
+//To show static data
+useEffect(() => {
+    setMessages(chatData)
+}, [])
+
+//Send msgs in firebase realtime db
+const onSend = () => {
+    const msgss = {
+      msgId: uuid.v4() or msgId: messages.length + 1,
+      msg: msgData,
+      receiverId: receiverId,
+    }
+    database().ref('/Messages').push().set(msgss);
+    setMessages([...messages, msgss])
+    setMsgData('')
+    setScroll(!scroll)
+};
+
+//RenderUI
+ const renderItem = ({ item }) => {
+    return (
+      <View>
+        {item.key == 1 || item.key == 3 || item.key == 5 || item.key == 8 ?
+          <View>
+            <View style={styles.doctorLeftTextView}>
+              <Text style={styles.doctorLeftText}>{item.msg}</Text>
+            </View>
+            {/* <View>
+              <Text>{myID}</Text>
+            </View> */}
+          </View>
+          :
+          <View>
+            <View style={styles.doctorRightTextView}>
+              <Text style={styles.doctorRightText}>{item.msg}</Text>
+            </View>
+          </View>
+        }
+      </View>
+    )
+  }
+
+//Show msgs
+<FlatList
+   data={messages}
+   renderItem={renderItem}
+   contentContainerStyle={{ marginTop: 30 }}
+   ListFooterComponent={<View style={{ height: 10 }}></View>}
+/>
