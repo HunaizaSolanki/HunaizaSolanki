@@ -78,3 +78,14 @@ const onSend = () => {
    contentContainerStyle={{ marginTop: 30 }}
    ListFooterComponent={<View style={{ height: 10 }}></View>}
 />
+
+*****Show Data in order from Firebase Realtime Db*****
+
+database().ref('/Messages').on('value', snapshot => {
+      //To show msgs in order
+      const msgArr = []
+      snapshot.forEach((childSnapshot) => {
+        msgArr.push(childSnapshot.val())
+      })
+      setMessages(msgArr)
+    });
